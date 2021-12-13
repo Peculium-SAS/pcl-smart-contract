@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require('@nomiclabs/hardhat-ethers');
+require("@nomiclabs/hardhat-etherscan");
+
 require("dotenv").config();
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -39,5 +41,16 @@ module.exports = {
       accounts: {mnemonic: process.env.mnemonic}
     }
   },
-  solidity: "0.8.4",
+  solidity: {
+    version: "0.8.10",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
+  etherscan: {
+    apiKey: process.env.BCSCAN_API_KEY
+  }
 };
